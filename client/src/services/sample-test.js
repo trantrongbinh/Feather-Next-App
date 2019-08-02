@@ -1,8 +1,8 @@
 const dataArray = [
-  { id: 1, name: 'TTB' },
-  { id: 2, name: 'ABC' },
-  { id: 3, name: 'XYZ' },
-  { id: 4, name: 'VKL' },
+  { _id: 1, text: 'TTB' },
+  { _id: 2, text: 'ABC' },
+  { _id: 3, text: 'XYZ' },
+  { _id: 4, text: 'VKL' },
 ];
 
 /**
@@ -11,7 +11,7 @@ const dataArray = [
  * Throws an error if not found.
  */
 export async function findData(id) {
-  const selected = dataArray.find((data) => data.id === Number(id))
+  const selected = dataArray.find((data) => data._id === Number(_id))
 
   if (!selected) {
     throw new Error('Cannot find user')

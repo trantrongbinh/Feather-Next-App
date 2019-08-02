@@ -11,8 +11,8 @@ export default class List extends Component {
         content = items.map((item, index) => {
           return (
             <tr key={ index }>
-              <td>{ item.id }</td>
-              <td>{ item.name }</td>
+              <td>{ item._id }</td>
+              <td>{ item.text }</td>
             </tr>
           );
         });

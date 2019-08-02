@@ -10,6 +10,6 @@ const client = feathers();
 client.configure(feathers.socketio(socket));
 client.configure(feathers.authentication(options));
 
-client.service('/users')
+// client.service('/users')
 
 export default client
