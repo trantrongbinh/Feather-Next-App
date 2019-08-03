@@ -10,7 +10,7 @@ const dataArray = [
  *
  * Throws an error if not found.
  */
-export async function findData(id) {
+export async function findData(_id) {
   const selected = dataArray.find((data) => data._id === Number(_id))
 
   if (!selected) {

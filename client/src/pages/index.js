@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import Page from '../components/page'
 import { i18n, withTranslation } from '../i18n'
 
-class Index extends React.Component {
+export class Index extends React.Component {
   static async getInitialProps() {
     return {
       namespacesRequired: ['common']
@@ -16,6 +16,7 @@ class Index extends React.Component {
   render () {
     return (
       <React.Fragment>
+        <h2>Index page</h2>
         <p>{this.props.t('name')}</p>
         <button
           type='button'

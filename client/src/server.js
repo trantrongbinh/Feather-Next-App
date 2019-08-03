@@ -1,5 +1,6 @@
 const express = require('express');
 const next = require('next');
+/* eslint-disable-next-line no-unused-vars */
 const dotenv = require('dotenv').config();
 
 const nextI18NextMiddleware = require('next-i18next/middleware').default;
@@ -15,21 +16,22 @@ const app = next({
 
 const handle = app.getRequestHandler();
 
-app.prepare().then(() => {
-  const server = express();
+app.prepare()
+  .then(() => {
+    const server = express();
 
-  server.use(nextI18NextMiddleware(nextI18next));
+    server.use(nextI18NextMiddleware(nextI18next));
 
-  server.get('*', (req, res) => {
-    return handle(req, res);
+    server.get('*', (req, res) => {
+      return handle(req, res);
+    });
+
+    server.listen(port, err => {
+      if (err) throw err;
+      console.log(`> Ready on http://localhost:${port}`);
+    });
+  })
+  .catch(ex => {
+    console.error(ex.stack);
+    process.exit(1);
   });
-
-  server.listen(port, err => {
-    if (err) throw err;
-    console.log(`> Ready on http://localhost:${port}`);
-  });
-})
-.catch(ex => {
-  console.error(ex.stack);
-  process.exit(1);
-});

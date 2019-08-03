@@ -1,4 +1,3 @@
-import React from 'react'
 import App, { Container } from 'next/app'
 import Head from 'next/head'
 import { Provider } from 'react-redux'

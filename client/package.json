@@ -4,11 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev:server": "nodemon src/server.js",
     "build": "next build src",
     "start": "NODE_ENV=production node src/server.js",
-    "dev": "next src -p 3001"
+    "dev": "next src -p 3001",
+    "eslint": "eslint src/. --fix"
   },
   "dependencies": {
     "@feathersjs/client": "^3.7.8",
@@ -28,7 +29,16 @@
     "socket.io-client": "^2.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "babel-jest": "^24.8.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "eslint": "^6.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "jest": "^24.8.0",
     "nodemon": "^1.19.1",
-    "redux-devtools-extension": "^2.13.8"
+    "react-test-renderer": "^16.8.6",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-mock-store": "^1.5.3"
   }
 }

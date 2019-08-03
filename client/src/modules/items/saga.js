@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import * as Types from './types';
-import { findAll } from '../../services/sample-test';
+// import { findAll } from '../../services/sample-test';
 import items from '../../services/items';
 
 // Respond to the actions that are caught by the watcher sagas
