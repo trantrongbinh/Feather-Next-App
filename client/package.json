@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "dev:server": "nodemon src/server.js",
+    "dev:server": "nodemon src",
     "build": "next build src",
     "start": "NODE_ENV=production node src/server.js",
     "dev": "next src -p 3001",

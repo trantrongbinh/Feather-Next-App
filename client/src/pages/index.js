@@ -8,21 +8,26 @@ import { i18n, withTranslation } from '../i18n'
 
 export class Index extends React.Component {
   static async getInitialProps() {
+
     return {
       namespacesRequired: ['common']
     }
   }
 
+  changeLang = () => {
+    return i18n.changeLanguage(i18n.language === 'en' ? 'vi' : 'en')
+  };
+
   render () {
     return (
       <React.Fragment>
         <h2>Index page</h2>
-        <p>{this.props.t('name')}</p>
+        <p>{this.props.t('common:name')}</p>
         <button
           type='button'
-          onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'vi' : 'en')}
+          onClick={() => this.changeLang()}
         >
-          {this.props.t('change-locale')}
+          {this.props.t('common:change-locale')}
         </button>
         <Page title='Index Page' linkTo='/items' NavigateTo='Items Page' />
       </React.Fragment>

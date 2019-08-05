@@ -16,22 +16,19 @@ const app = next({
 
 const handle = app.getRequestHandler();
 
-app.prepare()
-  .then(() => {
+(async () => {
+  try {
+    await app.prepare();
     const server = express();
 
     server.use(nextI18NextMiddleware(nextI18next));
 
-    server.get('*', (req, res) => {
-      return handle(req, res);
-    });
+    server.get('*', (req, res) => handle(req, res))
 
-    server.listen(port, err => {
-      if (err) throw err;
-      console.log(`> Ready on http://localhost:${port}`);
-    });
-  })
-  .catch(ex => {
+    await server.listen(port)
+    console.log(`> Ready on http://localhost:${port}`) // eslint-disable-line no-console
+  } catch(ex) {
     console.error(ex.stack);
     process.exit(1);
-  });
+  }
+})();

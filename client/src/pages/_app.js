@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
 
-import { appWithTranslation, i18n } from '../i18n'
+import { appWithTranslation } from '../i18n'
 import configureStore from '../redux/store'
 
 class MyApp extends App {
@@ -14,8 +14,6 @@ class MyApp extends App {
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ctx })
     }
-
-    i18n.language = 'en';
 
     return { pageProps }
   }
