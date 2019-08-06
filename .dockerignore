@@ -1,0 +1,4 @@
+# Specifies files and directories in project directory not be copied over to container
+server/node_modules
+client/node_modules
+npm-debug.log

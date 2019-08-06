@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+    # Setup node container
+    server:
+      build: ./server
+      image: server_app
+      container_name: server_app
+      expose:
+        - "3031"
+      environment:
+        SERVER_PORT: "3031"
+      ports:
+        - "3031:3030"
+      volumes:
+        - ./server/src:/home/node/server_app/src
+      command: npm run dev
+    # Setyp client container
+    client:
+      build: ./client
+      image: client_app
+      container_name: client_app
+      expose:
+        - "3002"
+      environment:
+        CLIENT_PORT: "3002"
+      ports:
+        - "3002:3001"
+      volumes:
+        - ./client/src:/home/node/client_app/src
+      links:
+        - server
+      command: npm run dev:server

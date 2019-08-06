@@ -1,29 +1,41 @@
-# server
+# Feathers-Next-App
 
 > 
 
 ## About
 
-This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
+This project uses [Feathers](http://feathersjs.com) for server and NextJS for client. Two open source web framework for building modern real-time applications and server site rending.
 
 ## Getting Started
 
-Getting up and running is as easy as 1, 2, 3.
-
+### Not use docker:
 1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
 2. Install your dependencies
 
     ```
     cd path/to/server; npm install
+    cd path/to/client; npm install
     ```
 
 3. Start your app
 
     ```
-    npm start
+    cd path/to/server; npm run dev
+    cd path/to/client; npm run dev:server
     ```
+### Use docker:
+1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
+2. Build docker to install your dependencies and tart your app
 
-## Testing
+    ```
+    cd root folder; docker-compose up --build (or docker-compose up -d)
+    ```
+3. Run app on port config in file docker
+4. Accept container in docker:
+
+    ```
+    docker exec -it <container_id> /bin/sh
+    ```
 
 Simply run `npm test` and all your tests in the `test/` directory will be run.
 
@@ -38,16 +50,6 @@ $ feathers generate service               # Generate a new Service
 $ feathers generate hook                  # Generate a new Hook
 $ feathers help                           # Show all commands
 ```
-
-## Help
-
-For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
-
-## Changelog
-
-__0.1.0__
-
-- Initial release
 
 ## License
 
