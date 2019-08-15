@@ -2,17 +2,18 @@
 
 import { shallow } from 'enzyme'
 import React from 'react'
+/* eslint-disable-next-line no-unused-vars */
 import renderer from 'react-test-renderer'
 import { Provider } from "react-redux";
 import configureMockStore from "redux-mock-store";
 
-import { Index } from '../src/pages/index.js'
+import { Index } from '../pages/index.js'
 
 const mockStore = configureMockStore();
 const store = mockStore({});
 
 describe("Index Component", () => {
-  it("should render without throwing an error", () => {
+  it("Should render without throwing an error", () => {
     expect(
       shallow(
         <Provider store={store}>

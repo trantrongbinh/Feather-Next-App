@@ -5,11 +5,11 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "dev:server": "nodemon src",
-    "build": "next build src",
-    "start": "NODE_ENV=production node src/server.js",
-    "dev": "next src -p 3001",
-    "eslint": "eslint src/. --fix"
+    "dev:server": "nodemon server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "dev": "next -p 3001",
+    "eslint": "eslint ./ --fix"
   },
   "dependencies": {
     "@feathersjs/client": "^3.7.8",
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
+    "babel-eslint": "^10.0.2",
     "babel-jest": "^24.8.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",

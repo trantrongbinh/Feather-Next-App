@@ -10,25 +10,28 @@ const dev = process.env.NODE_ENV !== 'production';
 const port = parseInt(process.env.PORT, 10) || 3001;
 
 const app = next({
-  dir: './src',
+  // dir: './src',
   dev
 });
 
 const handle = app.getRequestHandler();
 
-(async () => {
-  try {
-    await app.prepare();
+app.prepare()
+  .then(() => {
     const server = express();
 
     server.use(nextI18NextMiddleware(nextI18next));
 
-    server.get('*', (req, res) => handle(req, res))
+    server.get('*', (req, res) => {
+      return handle(req, res);
+    });
 
-    await server.listen(port)
-    console.log(`> Ready on http://localhost:${port}`) // eslint-disable-line no-console
-  } catch(ex) {
+    server.listen(port, err => {
+      if (err) throw err;
+      console.log(`> Ready on http://localhost:${port}`);
+    });
+  })
+  .catch(ex => {
     console.error(ex.stack);
     process.exit(1);
-  }
-})();
+  });

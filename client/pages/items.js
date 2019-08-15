@@ -14,7 +14,7 @@ class Items extends React.Component {
 
     }
 
-    return { isServer }
+    return { namespacesRequired: ['common'] }
   }
 
   // componentDidMount() {
