@@ -2,8 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import PropTypes from 'prop-types'
-
-import Page from '../components/page'
+import { Link } from '../routes/routes'
 import { i18n, withTranslation } from '../i18n'
 
 export class Index extends React.Component {
@@ -21,6 +20,14 @@ export class Index extends React.Component {
   render () {
     return (
       <React.Fragment>
+        <Link route='blog' params={{slug: 'hello-world'}}>
+          <a>Hello world</a>
+        </Link>
+        <br />
+        <Link route='/blog/another-blog-post'>
+          <a>Another blog post</a>
+        </Link>
+        <br />
         <h2>Index page</h2>
         <p>{this.props.t('common:name')}</p>
         <button
@@ -29,7 +36,11 @@ export class Index extends React.Component {
         >
           {this.props.t('common:change-locale')}
         </button>
-        <Page title='Index Page' linkTo='/items' NavigateTo='Items Page' />
+        <br />
+        <Link route='items'>
+          <a>Item page</a>
+        </Link>
+        
       </React.Fragment>
     )
   }

@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Link from 'next/link'
-import List from '../components/items/List'
+import List from '../../components/items/List'
 
-import { fetchItems } from '../modules/items/actions'
+import { fetchItems } from '../../modules/items/actions'
 
 class Items extends React.Component {
-  static async getInitialProps (props) {
-    const { store, isServer } = props.ctx;
+  static async getInitialProps (ctx) {
+    const { store, isServer } = ctx;
 
     if (store.getState().items.items.length === 0) {
       store.dispatch(fetchItems())
