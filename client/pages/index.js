@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import { Link } from '../routes/routes'
 import { i18n, withTranslation } from '../i18n'
 
+import MuiLink from '@material-ui/core/Link';
+
 export class Index extends React.Component {
   static async getInitialProps() {
 
@@ -40,14 +42,13 @@ export class Index extends React.Component {
         <Link route='items'>
           <a>Item page</a>
         </Link>
-        
+        <br />
+        <MuiLink color="secondary" href="https://material-ui.com/">
+          Material-UI.
+        </MuiLink>
       </React.Fragment>
     )
   }
-}
-
-Index.propTypes = {
-  t: PropTypes.func.isRequired,
 }
 
 export default compose(

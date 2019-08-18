@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '@material-ui/core/Button'
 
 const posts = [
   { slug: 'hello-world', title: 'Hello world' },
@@ -21,6 +22,13 @@ export default class extends React.Component {
 
     if (!post) return <h1>Post not found</h1>
 
-    return <h1>{post.title}</h1>
+    return (
+      <div>
+        <Button variant="contained" color="primary">
+          Hello World
+        </Button>
+        <h1>{post.title}</h1>
+      </div>
+    )
   }
 }
