@@ -118,3 +118,4 @@ server/node_modules
 # Client
 client/node_modules
 client/.next
+client/report.*.json

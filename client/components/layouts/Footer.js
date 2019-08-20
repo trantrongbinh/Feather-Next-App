@@ -1,12 +1,11 @@
-function Footer () {
+import { Layout } from 'antd'
+
+const { Footer } = Layout
+
+function MyFooter () {
   return (
-    <footer>
-      <p>
-        Proudly built with <a href='https://nextjs.org'>Next.js</a> -{' '}
-        <a href='#'>Copyright 2109, TTB.</a>
-      </p>
-    </footer>
+    <Footer style={{ textAlign: 'center' }}>Ant Design ©2019 Created by TTB</Footer>
   )
 }
 
-export default Footer
+export default MyFooter
