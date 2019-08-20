@@ -27,7 +27,16 @@ services:
     ports:
       - "3002:3001"
     volumes:
-      - ./client/src:/home/node/client_app/src
+      - ./client:/home/node/client_app
     links:
       - server
     command: npm run dev:server
+  # Database
+  mongo:
+    image: mongo:4
+    container_name: mongo
+    restart: always
+    expose:
+      - "27017"
+    volumes:
+      - ./.docker/mongo/data:/data/db

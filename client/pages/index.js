@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 import { Link } from '../routes/routes'
 import { i18n, withTranslation } from '../i18n'
 
-import MuiLink from '@material-ui/core/Link';
+import '../less/styles.less'
+import Layout from '../components/layouts/Layout'
 
 export class Index extends React.Component {
   static async getInitialProps() {
@@ -21,7 +22,8 @@ export class Index extends React.Component {
 
   render () {
     return (
-      <React.Fragment>
+      <Layout>
+        <span>This is Home Page</span><br/>
         <Link route='blog' params={{slug: 'hello-world'}}>
           <a>Hello world</a>
         </Link>
@@ -30,7 +32,7 @@ export class Index extends React.Component {
           <a>Another blog post</a>
         </Link>
         <br />
-        <h2>Index page</h2>
+        <h2 className='example'>Index page</h2>
         <p>{this.props.t('common:name')}</p>
         <button
           type='button'
@@ -42,11 +44,7 @@ export class Index extends React.Component {
         <Link route='items'>
           <a>Item page</a>
         </Link>
-        <br />
-        <MuiLink color="secondary" href="https://material-ui.com/">
-          Material-UI.
-        </MuiLink>
-      </React.Fragment>
+      </Layout>
     )
   }
 }

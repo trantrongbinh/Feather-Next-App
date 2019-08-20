@@ -110,6 +110,7 @@ $RECYCLE.BIN/
 # Others
 lib/
 data/
+.docker
 
 # Server
 server/node_modules
