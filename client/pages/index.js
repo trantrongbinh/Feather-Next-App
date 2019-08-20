@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { Link } from '../routes/routes'
 import { i18n, withTranslation } from '../i18n'
 
-import { Breadcrumb } from 'antd'
+import { Carousel } from 'antd'
 import Main from '../components/layouts/Main'
 
 export class Index extends React.Component {
@@ -20,11 +20,20 @@ export class Index extends React.Component {
     return (
       <Main>
         <>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb>
+          <Carousel>
+            <div>
+              <h3>1</h3>
+            </div>
+            <div>
+              <h3>2</h3>
+            </div>
+            <div>
+              <h3>3</h3>
+            </div>
+            <div>
+              <h3>4</h3>
+            </div>
+          </Carousel>
           <div className='wrap-content'>Content</div>
         </>
       </Main>
