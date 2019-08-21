@@ -5,6 +5,8 @@ import QueueAnim from 'rc-queue-anim';
 import ScrollParallax from 'rc-scroll-anim/lib/ScrollParallax';
 import BannerImage from './BannerImage';
 
+import { withTranslation } from '../../i18n';
+
 const loop = {
   duration: 3000,
   yoyo: true,
@@ -53,7 +55,7 @@ class Banner extends React.PureComponent {
               Ant Design
             </h1>
             <p key="p">
-              A design system with values of Nature and Determinacy for better user experience of enterprise applications
+              {this.props.t('common:des')}
             </p>
           </QueueAnim>
           {!isMobile && (
@@ -66,4 +68,4 @@ class Banner extends React.PureComponent {
   }
 }
 
-export default Banner;
+export default withTranslation('common')(Banner);
