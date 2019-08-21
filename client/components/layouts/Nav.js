@@ -31,11 +31,13 @@ class Nav extends React.Component {
         onClick={this.handleClick}
         selectedKeys={[this.state.current]}
         mode="horizontal"
-        style={{ lineHeight: '50px' }}
+        style={{ lineHeight: '64px' }}
       >
         <Menu.Item key="home">
-          <Icon type="home" />
-          Home
+          <a  id="logo">
+            <img alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" />
+            <img alt="Ant Design" src="https://gw.alipayobjects.com/zos/rmsportal/DkKNubTaaVsKURhcVGkh.svg" />
+          </a>
         </Menu.Item>
         <Menu.Item key="app" disabled>
           <Icon type="appstore" />
@@ -58,7 +60,17 @@ class Nav extends React.Component {
             <Menu.Item key="setting:4">Option 4</Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
-        <Menu.Item className="lang" style={{ float: 'right' }}>
+        <Menu.Item key="login">
+          <a>
+            <Icon type="login" /> Login
+          </a>
+        </Menu.Item>
+        <Menu.Item key="signup">
+          <a>
+            <Icon type="form" /> Sign up
+          </a>
+        </Menu.Item>
+        <Menu.Item className="lang">
           <Radio.Group value={locale} onChange={this.changeLocale}>
             <Radio.Button key="en" value="en">
               English
@@ -67,16 +79,6 @@ class Nav extends React.Component {
               VietNam
             </Radio.Button>
           </Radio.Group>
-        </Menu.Item>
-        <Menu.Item key="signup" style={{ float: 'right' }}>
-          <a href="/signup">
-            <Icon type="form" /> Sign up
-          </a>
-        </Menu.Item>
-        <Menu.Item key="login" style={{ float: 'right' }}>
-          <a href="/login">
-            <Icon type="login" /> Login
-          </a>
         </Menu.Item>
       </Menu>
     );

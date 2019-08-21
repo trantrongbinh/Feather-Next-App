@@ -1,12 +1,11 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 import { compose } from 'redux'
-import PropTypes from 'prop-types'
-import { Link } from '../routes/routes'
-import { i18n, withTranslation } from '../i18n'
-
-import { Carousel } from 'antd'
-import Main from '../components/layouts/Main'
+import PropTypes from 'prop-types';
+import { Link } from '../routes/routes';
+import { i18n, withTranslation } from '../i18n';
+import Main from '../components/layouts/Main';
+import Home from '../components/home';
 
 export class Index extends React.Component {
   static async getInitialProps() {
@@ -17,25 +16,11 @@ export class Index extends React.Component {
   }
 
   render () {
+    const { isMobile } = this.props;
+
     return (
-      <Main>
-        <>
-          <Carousel>
-            <div>
-              <h3>1</h3>
-            </div>
-            <div>
-              <h3>2</h3>
-            </div>
-            <div>
-              <h3>3</h3>
-            </div>
-            <div>
-              <h3>4</h3>
-            </div>
-          </Carousel>
-          <div className='wrap-content'>Content</div>
-        </>
+      <Main isMobile={isMobile}>
+        <Home isMobile={isMobile} />
       </Main>
     )
   }

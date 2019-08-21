@@ -1,10 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Head from './Head'
-import { Layout } from 'antd'
-import Nav from './Nav'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Head from './Head';
+import { Layout } from 'antd';
+import Nav from './Nav';
 
-const { Header } = Layout
+const { Header } = Layout;
 
 function MyHeader ({ path, pageTitle, ogImage }) {
   return (
