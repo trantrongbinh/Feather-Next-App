@@ -6,19 +6,25 @@ import { i18n, withTranslation } from '../../i18n';
 
 const { SubMenu } = Menu;
 
+import Cookies from 'js-cookie';
+
 class Nav extends React.Component {
   constructor() {
     super();
-    
+
     this.state = {
-      locale: i18n.language,
+      locale: '',
       current: 'home',
     };
   }
 
+  componentDidMount() {
+    const lang = Cookies.get('next-i18next');
+    this.setState({ locale: lang });
+  };
+
   changeLocale = e => {
     const localeValue = e.target.value;
-
     this.setState({ locale: localeValue });
 
     return i18n.changeLanguage(localeValue)
@@ -78,9 +84,9 @@ class Nav extends React.Component {
               </a>
             </Menu.Item>
             <Menu.Item key="signup">
-              <a>
-                <Icon type="form" /> Sign up
-              </a>
+              <Link route='register'>
+                <a><Icon type="form" /> {this.props.t('common:register')}</a>
+              </Link>
             </Menu.Item>
             <Menu.Item className="lang">
               <Radio.Group value={locale} onChange={this.changeLocale}>

@@ -1,8 +1,10 @@
 /* eslint-disable */
+require('dotenv').config()
 const withLess = require('@zeit/next-less')
 const lessToJS = require('less-vars-to-js')
 const fs = require('fs')
 const path = require('path')
+const Dotenv = require('dotenv-webpack')
 
 // Where your antd-custom.less file lives
 const themeVariables = lessToJS(
@@ -15,6 +17,18 @@ module.exports = withLess({
     modifyVars: themeVariables, // make your antd custom effective
   },
   webpack: (config, { isServer }) => {
+    config.plugins = config.plugins || []
+
+    config.plugins = [
+      ...config.plugins,
+
+      // Read the .env file
+      new Dotenv({
+        path: path.join(__dirname, '.env'),
+        systemvars: true
+      })
+    ]
+
     if (isServer) {
       const antStyles = /antd\/.*?\/style.*?/
       const origExternals = [...config.externals]

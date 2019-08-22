@@ -5,7 +5,7 @@ import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import { enquireScreen } from 'enquire-js';
 
-import { appWithTranslation } from '../i18n';
+import { i18n, appWithTranslation } from '../i18n';
 import configureStore from '../redux/store';
 
 import '../less/styles.less';

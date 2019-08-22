@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from '../routes/routes';
 import { i18n, withTranslation } from '../i18n';
 import Main from '../components/layouts/Main';
-import Home from '../components/home';
+import Banner from '../components/home/Banner';
 
 export class Index extends React.Component {
   static async getInitialProps() {
@@ -20,7 +20,9 @@ export class Index extends React.Component {
 
     return (
       <Main isMobile={isMobile}>
-        <Home isMobile={isMobile} />
+        <div className="page-wrapper home">
+          <Banner isMobile={isMobile} />
+        </div>
       </Main>
     )
   }

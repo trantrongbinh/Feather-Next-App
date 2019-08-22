@@ -19,7 +19,6 @@ class Main extends React.PureComponent {
         <Content className='main-content'>
           {children}
         </Content>
-
         <MyFooter />
       </Layout>
     );
