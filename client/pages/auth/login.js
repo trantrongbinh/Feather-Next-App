@@ -1,9 +1,9 @@
 import React from 'react';
-import Register from '../../components/auth/Register';
+import Login from '../../components/auth/Login';
 
 import '../../less/auth.less';
 
-class RegisterPage extends React.Component {
+class LoginPage extends React.Component {
   static getInitialProps ({ctx}) {
       return {
         namespacesRequired: ['common']
@@ -17,10 +17,10 @@ class RegisterPage extends React.Component {
   render () {
     return (
       <>
-        <Register />
+        <Login />
       </>
     )
   }
 }
 
-export default RegisterPage;
+export default LoginPage;

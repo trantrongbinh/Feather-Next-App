@@ -3,7 +3,7 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
 import { Link } from '../../routes/routes';
 
-class NormalRegisterForm extends React.Component {
+class NormalLoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -29,16 +29,6 @@ class NormalRegisterForm extends React.Component {
           )}
         </Form.Item>
         <Form.Item>
-          {getFieldDecorator('email', {
-            rules: [{ required: true, message: 'Please input your email!' }],
-          })(
-            <Input
-              prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Email"
-            />,
-          )}
-        </Form.Item>
-        <Form.Item>
           {getFieldDecorator('password', {
             rules: [{ required: true, message: 'Please input your Password!' }],
           })(
@@ -50,27 +40,19 @@ class NormalRegisterForm extends React.Component {
           )}
         </Form.Item>
         <Form.Item>
-          {getFieldDecorator('password_confirm', {
-            rules: [{ required: true, message: 'Please input your password confirmation!' }],
-          })(
-            <Input
-              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              type="password_confirm"
-              placeholder="Repeat password"
-            />,
-          )}
-        </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('icheck', {
+          {getFieldDecorator('remember', {
             valuePropName: 'checked',
-            initialValue: false,
-          })(<Checkbox>I agree to the <a className="login-form-forgot" href="">terms</a></Checkbox>)}
+            initialValue: true,
+          })(<Checkbox>Remember me</Checkbox>)}
+          <a className="login-form-forgot" href="">
+            Forgot password
+          </a>
           <Button type="primary" htmlType="submit" className="login-form-button">
-            Register
+            Log in
           </Button>
           Or
-          <Link route='login'>
-            <a href=""> Already have an account? Click Here.</a>
+          <Link route='register'>
+            <a href=""> register now!</a>
           </Link>
         </Form.Item>
       </Form>
@@ -78,6 +60,6 @@ class NormalRegisterForm extends React.Component {
   }
 }
 
-const WrappedNormalRegisterForm = Form.create({ name: 'normal_register' })(NormalRegisterForm);
+const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm);
 
-export default WrappedNormalRegisterForm;
+export default WrappedNormalLoginForm;

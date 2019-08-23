@@ -79,9 +79,9 @@ class Nav extends React.Component {
               </Menu.ItemGroup>
             </SubMenu>
             <Menu.Item key="login">
-              <a>
-                <Icon type="login" /> Login
-              </a>
+              <Link route='login'>
+                <a><Icon type="form" /> {this.props.t('common:login')}</a>
+              </Link>
             </Menu.Item>
             <Menu.Item key="signup">
               <Link route='register'>

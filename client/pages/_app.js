@@ -8,6 +8,7 @@ import { enquireScreen } from 'enquire-js';
 import { i18n, appWithTranslation } from '../i18n';
 import configureStore from '../redux/store';
 
+import 'antd/dist/antd.less';
 import '../less/styles.less';
 
 let isMobile = false;
