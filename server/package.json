@@ -23,11 +23,11 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "test": "npm run eslint && NODE_ENV= npm run mocha",
+    "test": "npm run eslint && NODE_ENV= npm run jest",
     "eslint": "eslint src/. test/. --config .eslintrc.json",
     "dev": "nodemon src/",
     "start": "node src/",
-    "mocha": "mocha test/ --recursive --exit"
+    "jest": "jest"
   },
   "dependencies": {
     "@feathersjs/authentication": "^2.1.16",
@@ -48,8 +48,9 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^1.1.0",
     "eslint": "^5.16.0",
-    "mocha": "^5.2.0",
+    "jest": "^24.9.0",
     "nodemon": "^1.19.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
