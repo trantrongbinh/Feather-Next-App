@@ -2,6 +2,7 @@ const authentication = require('@feathersjs/authentication');
 const jwt = require('@feathersjs/authentication-jwt');
 const local = require('@feathersjs/authentication-local');
 
+const tokenLogin = require('./hooks/token-login');
 
 module.exports = function (app) {
   const config = app.get('authentication');
@@ -16,11 +17,25 @@ module.exports = function (app) {
   // to create a new valid JWT (e.g. local or oauth2)
   app.service('authentication').hooks({
     before: {
-      create: [
+      create: [async context => {
+        if (context.data.strategy === 'local') {
+          const query = { email: context.data.email }
+
+          return context.app.service('users').find({ query }).then(users => {
+            context.params.payload = { userId: users.data[0]._id, name: users.data[0].name }
+
+            return context
+          })
+        }
         authentication.hooks.authenticate(config.strategies)
-      ],
+      }],
       remove: [
         authentication.hooks.authenticate('jwt')
+      ]
+    },
+    after: {
+      create: [
+        tokenLogin(config)
       ]
     }
   });

@@ -10,6 +10,9 @@ const configuration = require('@feathersjs/configuration');
 const express = require('@feathersjs/express');
 const socketio = require('@feathersjs/socketio');
 
+const moment = require('moment-timezone');
+const timezone = process.env.APP_TIMEZONE || 'Asia/Ho_Chi_Minh';
+moment.tz.setDefault(timezone);
 
 const middleware = require('./middleware');
 const services = require('./services');
