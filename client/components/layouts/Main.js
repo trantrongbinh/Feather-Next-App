@@ -16,9 +16,7 @@ class Main extends React.PureComponent {
     return (
       <Layout className='layout'>
         <MyHeader isMobile={isMobile} path={path} pageTitle={pageTitle} ogImage={ogImage} />
-        <Content className='main-content'>
-          {children}
-        </Content>
+        <Content className='main-content'>{children}</Content>
         <MyFooter />
       </Layout>
     );

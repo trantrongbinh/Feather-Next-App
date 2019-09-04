@@ -4,20 +4,21 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { Link } from '../../routes/routes';
 
 class NormalRegisterForm extends React.Component {
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-    });
-  };
+  // handleSubmit = e => {
+  //   e.preventDefault();
+  //   this.props.form.validateFields((err, values) => {
+  //     if (!err) {
+  //       console.log('Received values of form: ', values);
+  //     }
+  //   });
+  // };
 
   render() {
+    const { onSubmit } = this.props;
     const { getFieldDecorator } = this.props.form;
 
     return (
-      <Form onSubmit={this.handleSubmit} className="auth-form">
+      <Form onSubmit={onSubmit} className="auth-form">
         <Form.Item>
           {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!' }],

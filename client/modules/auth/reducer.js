@@ -1,24 +1,18 @@
-import { RECEIVE_LOGIN_AUTH, RECEIVE_CURRENT_USER } from "./types";
-import { getCookie } from './../../utils/cookie';
+import { RECEIVE_LOGIN } from "./types";
 
 const initialState = {
-    isAuthenticated: getCookie('token') ? true : false,
-    user: {}
+  isAuthenticated: false,
+  user: {}
 };
 
 export default function (state = initialState, action) {
-    switch (action.type) {
-        case RECEIVE_LOGIN_AUTH:
-            return {
-                ...state,
-                isAuthenticated: action.decoded ? true : false
-            }
-        case RECEIVE_CURRENT_USER:
-            return {
-                ...state,
-                user: action.user
-            }
-        default:
-            return state;
+  switch (action.type) {
+  case RECEIVE_LOGIN:
+    return {
+      ...state,
+      isAuthenticated: true
     }
+  default:
+    return state;
+  }
 }

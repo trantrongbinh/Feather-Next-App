@@ -7,7 +7,7 @@ import { fetchItems } from '../../modules/items/actions'
 
 class Items extends React.Component {
   static async getInitialProps (ctx) {
-    const { store, isServer } = ctx;
+    const { store } = ctx;
 
     if (store.getState().items.items.length === 0) {
       store.dispatch(fetchItems())

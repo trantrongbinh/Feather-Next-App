@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux'
-import PropTypes from 'prop-types';
-import { Link } from '../routes/routes';
-import { i18n, withTranslation } from '../i18n';
+import { withTranslation } from '../i18n';
 import Main from '../components/layouts/Main';
 import Banner from '../components/home/Banner';
 

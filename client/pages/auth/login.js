@@ -4,10 +4,10 @@ import Login from '../../components/auth/Login';
 import '../../less/auth.less';
 
 class LoginPage extends React.Component {
-  static getInitialProps ({ctx}) {
-      return {
-        namespacesRequired: ['common']
-      }
+  static getInitialProps () {
+    return {
+      namespacesRequired: ['common']
+    }
   }
 
   constructor(props) {

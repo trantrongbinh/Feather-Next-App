@@ -21,7 +21,7 @@ class Nav extends React.Component {
   componentDidMount() {
     const lang = Cookies.get('next-i18next');
     this.setState({ locale: lang });
-  };
+  }
 
   changeLocale = e => {
     const localeValue = e.target.value;

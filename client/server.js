@@ -1,6 +1,5 @@
 const express = require('express');
 const next = require('next');
-const cookie = require('cookie');
 /* eslint-disable-next-line no-unused-vars */
 const dotenv = require('dotenv').config();
 const routes = require('./routes/routes')
