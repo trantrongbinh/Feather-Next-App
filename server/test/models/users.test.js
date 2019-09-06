@@ -14,6 +14,7 @@ describe('Test model Users', () => {
     jest.mock('../../src/app', () => ({
       get: jest.fn(),
     }));
+
     const app = require('../../src/app');
     app.get.mockReturnValueOnce(mongoose);
 
@@ -25,13 +26,19 @@ describe('Test model Users', () => {
     await connection.close();
   });
 
-  afterEach(() => {
-    // Before each test, drop collection to reset db to empty state
-    userModel.collection.drop();
+  afterEach(async () => {
+    const users = await userModel.find({});
+
+    if (users.length > 0) {
+      // Before each test, drop collection to reset db to empty state
+      userModel.collection.drop();
+    }
   });
 
   describe('Test validation and save', () => {
     it('save with valid data', async () => {
+      expect.assertions(2);
+
       const mockUser = {
         name: 'User',
         password: '123',
@@ -45,6 +52,8 @@ describe('Test model Users', () => {
     });
 
     it('finds user with the name of users', async () => {
+      expect.assertions(1);
+
       const mockUser = {
         name: 'test',
         password: '123',
@@ -57,6 +66,8 @@ describe('Test model Users', () => {
     });
 
     it('Delete a user', async () => {
+      expect.assertions(1);
+
       const mockUser = {
         name: 'test',
         password: '123',

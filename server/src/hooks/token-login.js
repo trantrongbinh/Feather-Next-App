@@ -7,13 +7,12 @@ const moment = require('moment-timezone');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-    console.log(moment(Date.now()), 2222222)
     const user = context.app.service('users');
     const token = context.result.accessToken;
     const { secret } = options;
 
     if (!token || !secret) {
-      return Promise.reject(new Error(`Authentication failed!`));
+      return Promise.reject(new Error('Authentication failed!'));
     }
 
     jwt.verify(token, secret, async (error, payload) => {
