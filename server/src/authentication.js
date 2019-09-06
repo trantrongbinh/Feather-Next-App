@@ -19,15 +19,15 @@ module.exports = function (app) {
     before: {
       create: [async context => {
         if (context.data.strategy === 'local') {
-          const query = { email: context.data.email }
+          const query = { email: context.data.email };
 
           return context.app.service('users').find({ query }).then(users => {
-            context.params.payload = { userId: users.data[0]._id, name: users.data[0].name }
+            context.params.payload = { userId: users.data[0]._id, name: users.data[0].name };
 
-            return context
-          })
+            return context;
+          });
         }
-        authentication.hooks.authenticate(config.strategies)
+        authentication.hooks.authenticate(config.strategies);
       }],
       remove: [
         authentication.hooks.authenticate('jwt')

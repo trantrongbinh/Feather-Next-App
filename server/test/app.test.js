@@ -5,7 +5,7 @@ const app = require('../src/app');
 const port = app.get('port') || 3030;
 const getUrl = pathname => url.format({
   hostname: app.get('host') || 'localhost',
-  protocol: 'http',
+  protocol: 'http' || 'https',
   port,
   pathname
 });
@@ -21,7 +21,7 @@ describe('Feathers application tests (with jest)', () => {
   });
 
   it('starts and shows the index page', () => {
-    expect.assertions(1);
+    // expect.assertions(1);
     return rp(getUrl()).then(
       body => expect(body.indexOf('<html>')).not.toBe(-1)
     );
@@ -29,7 +29,7 @@ describe('Feathers application tests (with jest)', () => {
 
   describe('404', () => {
     it('shows a 404 HTML page', () => {
-      expect.assertions(2);
+      // expect.assertions(2);
       return rp({
         url: getUrl('path/to/nowhere'),
         headers: {
@@ -42,7 +42,7 @@ describe('Feathers application tests (with jest)', () => {
     });
 
     it('shows a 404 JSON error without stack trace', () => {
-      expect.assertions(4);
+      // expect.assertions(4);
       return rp({
         url: getUrl('path/to/nowhere'),
         json: true
