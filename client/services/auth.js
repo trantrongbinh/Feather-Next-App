@@ -1,7 +1,6 @@
 import client from '../utils/feathers';
 
 export function registerAuth (data) {
-  console.log(data, 9999999999999)
   return client.service('users').create(data);
 }
 
