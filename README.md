@@ -1,6 +1,13 @@
 # Feathers-Next-App
+Client Technology:
+* Next.js
+* React.js
+* Redux
+* Redux-sage
 
-> 
+Server Technology:
+* Node - Feather.js
+* MongoDB :leaf:
 
 ## About
 
