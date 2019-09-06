@@ -114,6 +114,8 @@ data/
 
 # Server
 server/node_modules
+# Because the host has not been configured (still localhost) on the host failed
+server/test/app.test.js
 
 # Client
 client/node_modules
