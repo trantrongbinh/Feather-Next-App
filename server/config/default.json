@@ -30,5 +30,5 @@
       "passwordField": "password"
     }
   },
-  "mongodb": "mongodb://localhost:27017/myProject"
+  "mongodb": "mongodb://localhost/myProject"
 }
