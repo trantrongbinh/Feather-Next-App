@@ -56,8 +56,8 @@ class Nav extends React.Component {
             mode="horizontal"
             style={{ lineHeight: '64px', float: 'right' }}
           >
-            <Menu.Item key="blog">
-              <Link route='blog' params={{slug: 'hello-world'}}>
+            <Menu.Item key="post">
+              <Link route='post' params={{slug: 'hello-world'}}>
                 <a>{this.props.t('common:home')}</a>
               </Link>
             </Menu.Item>

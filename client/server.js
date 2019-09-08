@@ -22,12 +22,9 @@ app.prepare()
     const server = express();
 
     server.use(nextI18NextMiddleware(nextI18next));
+    server.use(handler);
 
-    // server.get('*', (req, res) => {
-    //   return handler(req, res);
-    // });
-
-    server.use(handler).listen(port, err => {
+    server.listen(port, err => {
       if (err) throw err;
       console.log(`> Ready on http://localhost:${port}`);
     });
