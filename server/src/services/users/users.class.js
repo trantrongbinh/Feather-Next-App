@@ -5,7 +5,7 @@ const { Service } = require('feathers-mongoose');
 const crypto = require('crypto');
 
 // The Gravatar image service
-const defaultImageUrl = 'https://s.gravatar.com/avatar';
+const defaultAvatar = 'https://s.gravatar.com/avatar';
 // The size query. Our chat needs 60px images
 const query = 's=60';
 
@@ -16,13 +16,13 @@ exports.Users = class Users extends Service {
     // Gravatar uses MD5 hashes from an email address (all lowercase) to get the image
     const hash = crypto.createHash('md5').update(email.toLowerCase()).digest('hex');
     // The full avatar URL
-    const userImageUrl = `${defaultImageUrl}/${hash}?${query}`;
+    const avatar = `${defaultAvatar}/${hash}?${query}`;
     // The complete user
     const userData = {
       name,
       email,
       password,
-      userImageUrl
+      avatar
     };
 
     // Call the original `create` method with existing `params` and new data

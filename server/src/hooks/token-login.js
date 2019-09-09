@@ -21,8 +21,8 @@ module.exports = function (options = {}) {
       }
 
       const apiTokens = {
-        accessTokenId: payload.jti,
-        refreshToken: crypto.randomBytes(30).toString('hex'),
+        access_token_id: payload.jti,
+        refresh_token: crypto.randomBytes(30).toString('hex'),
         expire_ttl: moment().add(1, 'hour'),
         refresh_ttl: moment().add(7, 'days'),
       };
@@ -32,7 +32,7 @@ module.exports = function (options = {}) {
           email: context.data.email,
         },
         {
-          apiTokens,
+          $push: { api_tokens: apiTokens },
         }
       );
     });

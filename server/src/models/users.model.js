@@ -7,8 +7,8 @@ module.exports = function (app) {
 
   const apiTokens = new mongooseClient.Schema(
     {
-      accessTokenId: { type: String, default: '' },
-      refreshToken: { type: String, default: '' },
+      access_token_id: { type: String, default: '' },
+      refresh_token: { type: String, default: '' },
       expire_ttl: { type: Date, default: null },
       refresh_ttl: { type: Date, default: null },
     },
@@ -23,10 +23,11 @@ module.exports = function (app) {
       password: { type: String, required: true },
       name: { type: String, required: true},
       status: { type: Number, default: 0 },
-      userImageUrl: { type:String },
+      avatar: { type:String },
       description: { type:String },
-      apiTokens: apiTokens,
-      lastLoginAt: { type: Date, default: null }
+      api_tokens: [apiTokens],
+      last_login_at: { type: Date, default: null },
+      deleted_at: { type: Date, default: null }
     },
     {
       timestamps: true
