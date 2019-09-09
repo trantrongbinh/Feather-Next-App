@@ -30,5 +30,5 @@
       "passwordField": "password"
     }
   },
-  "mongodb": "mongodb://localhost:27017/myProject"
+  "mongodb": "mongodb://bkfa:123456a@ds062059.mlab.com:62059/feather-app"
 }
