@@ -17,13 +17,13 @@ export default class extends React.Component {
   }
 
   render () {
-    const { post } = this.props
+    const { post } = this.props;
 
     if (!post) return <h1>Post not found</h1>
 
     return (
       <div>
-        <h1>{post.title}</h1>
+        <h1>Title: {post.title}</h1>
       </div>
     )
   }

@@ -14,6 +14,7 @@ services:
       - "3031:3030"
     volumes:
       - ./server/src:/home/node/server_app/src
+      - ./server/node_modules
     command: npm run dev
   # Setyp client container
   client:
@@ -28,6 +29,7 @@ services:
       - "3002:3001"
     volumes:
       - ./client:/home/node/client_app
+      - ./client/node_modules
     links:
       - server
     command: npm run dev:server

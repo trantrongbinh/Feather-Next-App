@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+/* eslint-disable-next-line no-unused-vars */
+const dotenv = require('dotenv').config({ path: __dirname + '/./../.env' });
 const logger = require('./logger');
 const app = require('./app');
 const port = app.get('port');
