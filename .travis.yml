@@ -1,5 +1,6 @@
-language: node_js # Sets which engine use to build the project
-node_js: "node" # Specifies node version to use "node"="latest"
+language: node_js
+node_js:
+  - "10"
 services: mongodb
 cache:
   directories:
@@ -9,19 +10,23 @@ cache:
 matrix:
   fast_finish: true
   include:
-    - env: ECMAScript
-      before_script:
+    - env: APP=client
+      before_install:
         - cd ${TRAVIS_BUILD_DIR}/client
-        - npm install
-      script:
-        - npm test
-        - travis_wait 30 npm run dev:server
-    - env: ECMAScript
       before_script:
-        - cd ${TRAVIS_BUILD_DIR}/server
-        - npm install
+        - sleep 10
+      install:
+        - npm install 
       script:
-        - npm test
-        - travis_wait 30 npm run dev
+        - npm run test
+    - env: APP=server
+      before_install:
+        - cd ${TRAVIS_BUILD_DIR}/server
+      before_script:
+        - sleep 10
+      install:
+        - npm install 
+      script:
+        - npm run test
 on:
   branch: master

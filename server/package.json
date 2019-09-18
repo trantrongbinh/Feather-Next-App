@@ -27,7 +27,7 @@
     "eslint": "eslint src/. test/. --config .eslintrc.json",
     "dev": "nodemon src/",
     "start": "node src/",
-    "jest": "jest --detectOpenHandles"
+    "jest": "jest --detectOpenHandles --forceExit"
   },
   "dependencies": {
     "@feathersjs/authentication": "^2.1.16",
