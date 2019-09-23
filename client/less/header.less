@@ -29,18 +29,28 @@ header {
       top: 1px;
     }
   }
-}
 
-.home {
-  #header,
-  header {
-    box-shadow: none;
-    max-width: 1200px;
-    width: 100%;
-    margin: 20px auto 0;
-    padding: 0 24px;
-    #logo {
-      padding: 0;
+  .lang {
+    border-bottom: none !important;
+    &:hover {
+      border-bottom: none !important;
     }
   }
+
+  .menu-horizontal {
+    line-height: 64px !important;
+    float: right;
+  }
+
+  .menu-inline {
+    width: 235px !important;
+  }
+
+  .ant-drawer-body {
+    padding: 0 !important;
+  }
+}
+
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+  border-right: none !important;
 }

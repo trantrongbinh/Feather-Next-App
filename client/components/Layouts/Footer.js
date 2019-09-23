@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 
-function Footer() {
+export default function Footer() {
   return (
     <footer id="footer" className="dark">
       <div className="footer-wrap">
@@ -88,5 +88,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

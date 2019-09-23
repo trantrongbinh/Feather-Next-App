@@ -56,3 +56,7 @@ $ feathers help                           # Show all commands
 Copyright (c) 2018
 
 Licensed under the [MIT license](LICENSE).
+
+## Note
+
+- NextJS: https://nextjs.org/telemetry

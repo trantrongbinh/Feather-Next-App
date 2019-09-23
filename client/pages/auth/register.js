@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'next/router';
-import Register from '../../components/auth/Register';
+import Register from '../../components/Auth/Register';
 import { reqRegisterAuth } from '../../modules/auth/actions';
 
 import '../../less/auth.less';
 
 class RegisterPage extends React.Component {
-  static getInitialProps (ctx) {
+  static getInitialProps () {
     return {
       namespacesRequired: ['common']
     };

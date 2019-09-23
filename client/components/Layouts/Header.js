@@ -6,11 +6,11 @@ import Nav from './Nav';
 
 const { Header } = Layout;
 
-function MyHeader ({ path, pageTitle, ogImage }) {
+export default function MyHeader({ path, pageTitle, ogImage }) {
   return (
     <>
       <Head title={pageTitle} ogImage={ogImage} path={path} />
-      <Header>
+      <Header id="header">
         <Nav />
       </Header>
     </>
@@ -22,5 +22,3 @@ MyHeader.propTypes = {
   pageTitle: PropTypes.string,
   ogImage: PropTypes.string
 }
-
-export default MyHeader
