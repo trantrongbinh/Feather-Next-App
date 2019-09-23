@@ -59,4 +59,4 @@ Licensed under the [MIT license](LICENSE).
 
 ## Note
 
-- NextJS: https://nextjs.org/telemetry
+- Telemetry Collect of NextJS: https://nextjs.org/telemetry
