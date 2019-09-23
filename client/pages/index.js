@@ -1,32 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux'
-import { withTranslation } from '../i18n';
-import Main from '../components/layouts/Main';
-import Banner from '../components/home/Banner';
+import Main from '../components/Layouts/Main';
+import Homepage from '../components/Home/Homepage';
 
-export class Index extends React.Component {
-  static async getInitialProps() {
+import { Layout } from 'antd';
 
-    return {
-      namespacesRequired: ['common']
-    }
-  }
+const { Content } = Layout;
 
-  render () {
-    const { isMobile } = this.props;
-
-    return (
-      <Main isMobile={isMobile}>
-        <div className="page-wrapper home">
-          <Banner isMobile={isMobile} />
-        </div>
-      </Main>
-    )
-  }
+export default function Index() {
+  return (
+    <Main>
+      <Content style={{ padding: '0 50px', marginTop: 64 }}>
+        <Homepage />
+      </Content>
+    </Main>
+  );
 }
 
-export default compose(
-  connect(),
-  withTranslation('common')
-)(Index);
+Index.getInitialProps = async () => {
+  return { namespacesRequired: ['common'] }
+}

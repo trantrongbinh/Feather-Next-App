@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Link from 'next/link'
-import List from '../../components/items/List'
+import List from '../../components/Items/List'
 
 import { fetchItems } from '../../modules/items/actions'
 

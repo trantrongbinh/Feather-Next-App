@@ -18,6 +18,7 @@ Error.getInitialProps = async ({ res, err }) => {
   } else if (err) {
     ({ statusCode } = err)
   }
+
   return {
     namespacesRequired: ['common'],
     statusCode,
