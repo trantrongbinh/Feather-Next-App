@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader, Menu, Dropdown, Icon, Button, Tag, Typography, Row, Col, Timeline, Input } from 'antd';
+import { PageHeader, Menu, Dropdown, Icon, Input, Button, Tag, Typography, Row, Col, Timeline } from 'antd';
 
 const { Paragraph } = Typography;
 const { Search } = Input;

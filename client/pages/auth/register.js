@@ -24,17 +24,16 @@ class RegisterPage extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
+
     const { name, email, password } = this.state;
     this.props.registerAuth({ name, email, password }, this.props.router);
   };
 
   render () {
     return (
-      <React.Fragment>
-        <Register
-          onSubmit={this.onSubmit}
-        />
-      </React.Fragment>
+      <Register
+        onSubmit={this.onSubmit}
+      />
     )
   }
 }

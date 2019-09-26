@@ -6,7 +6,6 @@ import withReduxSaga from 'next-redux-saga';
 import { appWithTranslation } from '../i18n';
 import configureStore from '../redux/store';
 
-import 'antd/dist/antd.less';
 import '../less/styles.less';
 
 class MyApp extends App {

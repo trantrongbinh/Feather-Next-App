@@ -25,7 +25,7 @@ module.exports = function (app) {
       status: { type: Number, default: 0 },
       avatar: { type:String },
       description: { type:String },
-      api_tokens: [apiTokens],
+      api_tokens: apiTokens,
       last_login_at: { type: Date, default: null },
       deleted_at: { type: Date, default: null }
     },

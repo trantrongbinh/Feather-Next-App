@@ -5,10 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "npm run eslint && npm run jest",
+    "dev": "next -p 3001",
     "dev:server": "nodemon server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "dev": "next -p 3001",
+    "start": "npm run build && NODE_ENV=production node server.js",
     "eslint": "eslint ./ --fix",
     "jest": "jest"
   },
@@ -16,7 +16,6 @@
     "@feathersjs/client": "^3.7.8",
     "@zeit/next-less": "^1.0.1",
     "antd": "^3.22.0",
-    "babel-plugin-import": "^1.12.0",
     "dotenv-webpack": "^1.7.0",
     "express": "^4.17.1",
     "js-cookie": "^2.2.1",
