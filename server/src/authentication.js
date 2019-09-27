@@ -17,18 +17,19 @@ module.exports = function (app) {
   // to create a new valid JWT (e.g. local or oauth2)
   app.service('authentication').hooks({
     before: {
-      create: [async context => {
-        if (context.data.strategy === 'local') {
-          const query = { email: context.data.email };
-
-          return context.app.service('users').find({ query }).then(users => {
-            context.params.payload = { userId: users.data[0]._id, name: users.data[0].name };
-
-            return context;
+      create: [
+        authentication.hooks.authenticate(config.strategies),
+        context => {
+          // make sure params.payload exists
+          context.params.payload = context.params.payload || {};
+          // merge in a `test` property
+          Object.assign(context.params.payload, {
+            isAdmin: app.get('admin').email === context.params.user.email,
+            name: context.params.user.name,
+            email: context.params.user.email,
           });
         }
-        authentication.hooks.authenticate(config.strategies);
-      }],
+      ],
       remove: [
         authentication.hooks.authenticate('jwt')
       ]

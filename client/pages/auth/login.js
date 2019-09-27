@@ -1,14 +1,161 @@
 import React from 'react';
-import Login from '../../components/Auth/Login';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withRouter } from 'next/router';
+import { Form, Icon, Input, Button, Alert, Checkbox } from 'antd';
+import PropTypes from 'prop-types';
+
+import { withTranslation } from '../../i18n';
+import { reqLoginAuth } from '../../modules/auth/actions';
+import { Link } from '../../routes/routes';
+import { authValidate } from '../../config/validate';
+import { PandaSvg } from '../../components/Partials/Icons';
 
 import '../../less/auth.less';
 
-export default function LoginPage() {
-  return (
-    <Login />
-  );
+const FormItem = Form.Item;
+
+class Login extends React.Component {
+  static getInitialProps () {
+    return {
+      namespacesRequired: ['auth']
+    };
+  }
+
+  state = {
+    email: '',
+    password: '',
+    error: '',
+    isError: false,
+  };
+
+  rules = {
+    email: [
+      { required: true, message: this.props.t('validate.email.required') },
+      {
+        pattern: authValidate.email.pattern,
+        message: this.props.t('validate.email.regex'),
+      },
+    ],
+    password: [
+      { required: true, message: this.props.t('validate.password.required') },
+    ],
+  };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.alert.error !== '') {
+      prevState.isError = true;
+      prevState.error = nextProps.t('invalid_account')
+    }
+
+    return { nextProps, prevState };
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        const { email, password } = values;
+        this.props.loginAuth({ email, password }, this.props.router);
+      }
+    });
+  };
+
+  render() {
+    const { isError } = this.state;
+    const { t, form } = this.props;
+
+    return (
+      <React.Fragment>
+        <Form onSubmit={this.handleSubmit} className="auth-form">
+          <h2 className="logo">
+            <Icon style={{ fontSize: 100, color: '#40A9FF' }} theme="outlined" component={PandaSvg} />
+          </h2>
+          {isError && (
+            <Form.Item>
+              <Alert message={t('login_error')} description={this.state.error} type="error" showIcon />
+            </Form.Item>
+          )}
+          <FormItem
+            help={
+              form.getFieldError('email') ? form.getFieldError('email') : ''
+            }
+          >
+            {form.getFieldDecorator('email', {
+              validateFirst: true,
+              rules: this.rules.email,
+            })(
+              <Input
+                prefix={<Icon type="mail" />}
+                placeholder={t('email')}
+                type="text"
+              />
+            )}
+          </FormItem>
+          <FormItem
+            help={
+              form.getFieldError('password') ? form.getFieldError('password') : ''
+            }
+          >
+            {form.getFieldDecorator('password', {
+              validateFirst: true,
+              rules: this.rules.password,
+            })(
+              <Input
+                prefix={<Icon type="lock" />}
+                type="password"
+                placeholder={t('password')}
+              />
+            )}
+          </FormItem>
+          <FormItem>
+            {form.getFieldDecorator('remember', {
+              valuePropName: 'checked',
+              initialValue: true,
+            })(<Checkbox>{t('remember_me')}</Checkbox>)}
+            <a className="login-form-forgot" href="">
+              {t('forgot_password')}
+            </a>
+
+            <Button type="primary" htmlType="submit" className="login-form-button">
+              {t('login')}
+            </Button>
+            {t('or')}
+            <Link route='register'>
+              <a href=""> {t('redirect_to_register')}</a>
+            </Link>
+          </FormItem>
+        </Form>
+      </React.Fragment>
+    );
+  }
 }
 
-LoginPage.getInitialProps = async () => {
-  return { namespacesRequired: ['common'] }
+Login.propTypes = {
+  t: PropTypes.func.isRequired,
 }
+
+const LoginPage = Form.create()(Login);
+
+const mapStateToProps = state => {
+  return {
+    auth : state.auth,
+    alert: state.alert
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loginAuth: (data, router) => {
+      dispatch(reqLoginAuth(data, router));
+    }
+  }
+}
+
+export default withRouter(
+  compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withTranslation('auth')
+  )(LoginPage)
+);

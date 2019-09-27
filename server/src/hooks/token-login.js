@@ -32,7 +32,7 @@ module.exports = function (options = {}) {
           email: context.data.email,
         },
         {
-          $push: { api_tokens: apiTokens },
+          api_tokens: apiTokens,
         }
       );
     });
