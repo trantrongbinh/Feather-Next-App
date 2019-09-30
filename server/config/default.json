@@ -6,6 +6,7 @@
     "default": 10,
     "max": 50
   },
+  "mongodb": "mongodb://localhost/myProject",
   "authentication": {
     "secret": "14bbc3cf04072251836355a2bf8cbedbf229bff355708f146e3a4cd02fbb92b67eec2874f6e7df54640dd8d29aa456da1e3bcd56a361c65fbf831d32893b8f602595b73ae78e54818099b1a56e78efbe4b45f1a9e9e386ec13819befbadf879032d80cf8f52b94f84bb47080156bc367ebdeea3c3ee655bd31509f16c881a1432cb71edf633c7d3c7db2accdc3aa663b62bee644a29f4e7f227c3d2fa47bfe4fb01c19500e0fe7c69d6e1c6e8ce3ccb502193cc49c0668144cb2e9211c4b3f0c84385e1d50988132722ff66cd8f026fda77bf0f76e81ece24c0071cc88c851320677438291cef159730a2b2468286a5f20dfe8336d90d8538046c8be1c8ed7c4",
     "strategies": [
@@ -18,9 +19,9 @@
       "header": {
         "typ": "access"
       },
-      "audience": "https://yourdomain.com",
+      "audience": "https://github.com/trantrongbinh",
       "subject": "anonymous",
-      "issuer": "feathers",
+      "issuer": "tranbinhbak@gmail.com",
       "algorithm": "HS256",
       "expiresIn": "1d"
     },
@@ -30,5 +31,8 @@
       "passwordField": "password"
     }
   },
-  "mongodb": "mongodb://localhost/myProject"
+  "admin": {
+    "email": "admin@gmail.com",
+    "password": "admin123"
+  }
 }

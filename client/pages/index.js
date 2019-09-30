@@ -5,7 +5,7 @@ import Homepage from '../components/Home/Homepage';
 export default function Index() {
   return (
     <Main>
-        <Homepage />
+      <Homepage />
     </Main>
   );
 }
