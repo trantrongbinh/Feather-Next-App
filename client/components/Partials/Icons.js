@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon } from 'antd';
 
 export const PandaSvg = () => (
   <svg viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor">
@@ -43,4 +44,8 @@ export const PandaSvg = () => (
       p-id="1150"
     />
   </svg>
+);
+
+export const Loading = () => (
+  <Icon type="loading" />
 );

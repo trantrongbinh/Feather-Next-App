@@ -1,15 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
 import { withRouter } from 'next/router';
 import { Form, Icon, Input, Button, Alert, Checkbox } from 'antd';
 import PropTypes from 'prop-types';
 
 import { withTranslation } from '../../i18n';
-import { reqLoginAuth } from '../../modules/auth/actions';
 import { Link } from '../../routes/routes';
 import { authValidate } from '../../config/validate';
 import { PandaSvg } from '../../components/Partials/Icons';
+import { loginAuth } from '../../services/auth';
 
 import '../../less/auth.less';
 
@@ -26,7 +24,9 @@ class Login extends React.Component {
     email: '',
     password: '',
     error: '',
+    errors: {},
     isError: false,
+    isLoading: false,
   };
 
   rules = {
@@ -42,28 +42,45 @@ class Login extends React.Component {
     ],
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.alert.error !== '') {
-      prevState.isError = true;
-      prevState.error = nextProps.t('invalid_account')
-    }
-
-    return { nextProps, prevState };
-  }
-
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields(async (err, values) => {
       if (!err) {
         const { email, password } = values;
-        this.props.loginAuth({ email, password }, this.props.router);
+
+        try {
+          this.setState({ isLoading: true });
+          const token = await loginAuth({ email, password });
+
+          if (token) {
+            this.props.router.push('/');
+          }
+        } catch (err) {
+          this.setState({ isLoading: false });
+
+          if (err.errors && Object.keys(err.errors).length !== 0) {
+            this.setState({
+              isError: true,
+              errors: err.errors,
+            });
+          } else {
+            this.setState({
+              isError: true,
+              error: this.props.t('invalid_account'),
+            });
+          }
+        }
       }
     });
   };
 
+  handleClickInput = () => {
+    this.setState({ isError: false });
+  }
+
   render() {
-    const { isError } = this.state;
+    const { isError, isLoading, error } = this.state;
     const { t, form } = this.props;
 
     return (
@@ -72,9 +89,9 @@ class Login extends React.Component {
           <h2 className="logo">
             <Icon style={{ fontSize: 100, color: '#40A9FF' }} theme="outlined" component={PandaSvg} />
           </h2>
-          {isError && (
+          { isError && (
             <Form.Item>
-              <Alert message={t('login_error')} description={this.state.error} type="error" showIcon />
+              <Alert message={t('login_error')} description={error} type="error" showIcon />
             </Form.Item>
           )}
           <FormItem
@@ -90,6 +107,7 @@ class Login extends React.Component {
                 prefix={<Icon type="mail" />}
                 placeholder={t('email')}
                 type="text"
+                onClick={this.handleClickInput}
               />
             )}
           </FormItem>
@@ -118,7 +136,7 @@ class Login extends React.Component {
               {t('forgot_password')}
             </a>
 
-            <Button type="primary" htmlType="submit" className="login-form-button">
+            <Button type="primary" htmlType="submit" className="login-form-button" loading={isLoading}>
               {t('login')}
             </Button>
             {t('or')}
@@ -138,24 +156,4 @@ Login.propTypes = {
 
 const LoginPage = Form.create()(Login);
 
-const mapStateToProps = state => {
-  return {
-    auth : state.auth,
-    alert: state.alert
-  }
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    loginAuth: (data, router) => {
-      dispatch(reqLoginAuth(data, router));
-    }
-  }
-}
-
-export default withRouter(
-  compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    withTranslation('auth')
-  )(LoginPage)
-);
+export default withRouter(withTranslation('auth')(LoginPage));

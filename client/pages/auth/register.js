@@ -1,14 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
 import { withRouter } from 'next/router';
 import { Form, Icon, Input, Button } from 'antd';
 import PropTypes from 'prop-types';
 
 import { withTranslation } from '../../i18n';
-import { reqRegisterAuth } from '../../modules/auth/actions';
 import { Link } from '../../routes/routes';
 import { authValidate } from '../../config/validate';
+import { registerAuth } from '../../services/auth';
 
 import '../../less/auth.less';
 
@@ -23,6 +21,7 @@ class Register extends React.Component {
 
   state = {
     errors: {},
+    isLoading: false,
   };
 
   validateToNextPassword = async (rule, value) => {
@@ -103,17 +102,31 @@ class Register extends React.Component {
   onSubmit = e => {
     e.preventDefault();
 
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields(async (err, values) => {
       if (!err) {
         const { name, email, password, password_confirmation } = values;
-        this.props.registerAuth({ name, email, password, password_confirmation }, this.props.router);
+
+        try {
+          this.setState({ isLoading: true });
+          const user = await registerAuth({ name, email, password, password_confirmation });
+
+          if (user) {
+            this.props.router.push('/auth/login');
+          }
+        } catch (err) {
+          this.setState({ isLoading: false });
+
+          if (err.errors && Object.keys(err.errors).length !== 0) {
+            this.setState({ errors: err.errors });
+          }
+        }
       }
     });
   };
 
   render () {
     const { form, t } = this.props;
-    const { errors } = this.state;
+    const { errors, isLoading } = this.state;
 
     return (
       <Form onSubmit={this.onSubmit} className="auth-form">
@@ -184,7 +197,7 @@ class Register extends React.Component {
             />
           )}
         </FormItem>
-        <Button type="primary" htmlType="submit" className="login-form-button">
+        <Button type="primary" htmlType="submit" className="login-form-button" loading={isLoading}>
           { t('register') }
         </Button> <br /> <br />
         { t('or') }
@@ -202,24 +215,4 @@ Register.propTypes = {
 
 const RegisterPage = Form.create()(Register);
 
-const mapStateToProps = state => {
-  return {
-    auth : state.auth,
-    alert: state.alert
-  }
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    registerAuth: (data, router) => {
-      dispatch(reqRegisterAuth(data, router));
-    }
-  }
-}
-
-export default withRouter(
-  compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    withTranslation('auth')
-  )(RegisterPage)
-);
+export default withRouter(withTranslation('auth')(RegisterPage));

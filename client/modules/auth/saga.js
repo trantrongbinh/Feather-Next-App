@@ -12,7 +12,7 @@ function* callRegisterAuth (action) {
       yield call(action.router.push, '/auth/login');
     }
   } catch (err) {
-    yield put(recErrorMessage(err.message));
+    yield put(recErrorMessage(err.data.message));
   }
 }
 
@@ -23,11 +23,11 @@ function* callLoginAuth(action) {
     if (token) {
       yield call(action.router.push, '/');
     }
-  } catch (e) {
-    if (e.errors && Object.keys(e.errors).length !== 0) {
-      yield put(recErrorsMessage(e.errors))
+  } catch (err) {
+    if (err.errors && Object.keys(err.errors).length !== 0) {
+      yield put(recErrorsMessage(err.errors))
     } else {
-      yield put(recErrorMessage(e.data.message))
+      yield put(recErrorMessage(err.data.message))
     }
   }
 }
