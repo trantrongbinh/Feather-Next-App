@@ -5,12 +5,20 @@ import withReduxSaga from 'next-redux-saga';
 
 import { appWithTranslation } from '../i18n';
 import configureStore from '../redux/store';
+import RedirectTo from '../components/Partials/RedirectTo';
+import { getCookie } from '../utils/cookie';
 
 import '../less/styles.less';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
+    
+    if (ctx.isServer) {
+      console.log(ctx.req.headers.cookie, 'server')
+    } else {
+      console.log(getCookie('token'), 'client')
+    }
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);

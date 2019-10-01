@@ -7,3 +7,5 @@ module.exports = routes()
   .add('register', '/auth/register', 'auth/register')
   .add('items', '/items', 'items/items')
   .add('post', 'post/:slug', 'posts/[slug]')
+  // routes for admin
+  .add('admin', 'admin', 'admin/index')

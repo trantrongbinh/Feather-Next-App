@@ -8,6 +8,7 @@ import { Link } from '../../routes/routes';
 import { authValidate } from '../../config/validate';
 import { PandaSvg } from '../../components/Partials/Icons';
 import { loginAuth } from '../../services/auth';
+import { setCookie } from '../../utils/cookie';
 
 import '../../less/auth.less';
 
@@ -51,9 +52,10 @@ class Login extends React.Component {
 
         try {
           this.setState({ isLoading: true });
-          const token = await loginAuth({ email, password });
+          const data = await loginAuth({ email, password });
 
-          if (token) {
+          if (data.accessToken) {
+            setCookie('token', data.accessToken);
             this.props.router.push('/');
           }
         } catch (err) {
@@ -124,6 +126,7 @@ class Login extends React.Component {
                 prefix={<Icon type="lock" />}
                 type="password"
                 placeholder={t('password')}
+                onClick={this.handleClickInput}
               />
             )}
           </FormItem>

@@ -5,8 +5,7 @@ module.exports = function (app) {
     process.env.MONGODB_URL || app.get('mongodb'),
     { 
       useCreateIndex: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useNewUrlParser: true
     }
   );
   mongoose.Promise = global.Promise;

@@ -7,9 +7,9 @@ const socket = io(API_ENDPOINT, {transports: ['websocket'], forceNew: true})
 const options = {}
 const client = feathers();
 
-if (typeof window !== 'undefined') {
-  options.storage = window.localStorage;
-}
+// if (typeof window !== 'undefined') {
+//   options.storage = window.localStorage;
+// }
 
 client.configure(feathers.socketio(socket));
 client.configure(feathers.authentication(options));
